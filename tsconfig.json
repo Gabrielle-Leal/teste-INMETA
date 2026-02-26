@@ -1,0 +1,29 @@
+{
+  "include": ["client/src/**/*.ts", "client/src/**/*.d.ts", "client/src/**/*.tsx", "client/src/**/*.vue", "server/**/*"],
+  "exclude": ["node_modules", "build", "dist", "**/*.test.ts"],
+  "compilerOptions": {
+    "incremental": true,
+    "tsBuildInfoFile": "./node_modules/typescript/tsbuildinfo",
+    "noEmit": true,
+    "module": "ESNext",
+    "strict": true,
+    "lib": ["esnext", "dom", "dom.iterable"],
+    "jsx": "preserve",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "allowImportingTsExtensions": true,
+    "moduleResolution": "bundler",
+    "baseUrl": ".",
+    "types": ["node", "vite/client"],
+    "paths": {
+      "@/*": ["./client/src/*"],
+      "@components/*": ["./client/src/components/*"],
+      "@pages/*": ["./client/src/pages/*"],
+      "@stores/*": ["./client/src/stores/*"],
+      "@services/*": ["./client/src/services/*"],
+      "@types/*": ["./client/src/types/*"],
+      "@utils/*": ["./client/src/utils/*"],
+      "@layouts/*": ["./client/src/layouts/*"]
+    }
+  }
+}
