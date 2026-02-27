@@ -23,7 +23,8 @@
       "@services/*": ["./client/src/services/*"],
       "@types/*": ["./client/src/types/*"],
       "@utils/*": ["./client/src/utils/*"],
-      "@layouts/*": ["./client/src/layouts/*"]
+      "@layouts/*": ["./client/src/layouts/*"],
+      "@shared/*": ["./shared/*"]
     }
   }
 }
