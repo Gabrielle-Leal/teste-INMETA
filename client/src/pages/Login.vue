@@ -56,6 +56,7 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted } from 'vue'
 import { useRouter, RouterLink } from 'vue-router'
 import { useAuthStore } from '@stores/auth'
 import { useToast } from '@utils/useToast'
@@ -64,6 +65,11 @@ import { createLoginSchema } from '@/composables/useFormValidation'
 
 const router = useRouter()
 const authStore = useAuthStore()
+
+// Limpar erro anterior ao entrar na página
+onMounted(() => {
+  authStore.error = null
+})
 
 // Configurar formulário com vee-validate e schema de validação
 const { handleSubmit, errors } = useForm({
