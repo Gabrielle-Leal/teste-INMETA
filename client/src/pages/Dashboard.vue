@@ -185,13 +185,13 @@
 
     <!-- Add Cards Modal -->
     <div v-if="showAddCardsModal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div class="bg-card rounded-lg max-w-2xl w-full max-h-96 overflow-y-auto p-6">
-        <div class="flex items-center justify-between mb-4">
+      <div class="bg-card rounded-lg max-w-4xl w-full h-[85vh] flex flex-col">
+        <div class="flex items-center justify-between p-6 pb-4 border-b border-border shrink-0">
           <h3 class="text-xl font-bold">Adicionar Cartas</h3>
           <button @click="showAddCardsModal = false" class="text-muted-foreground hover:text-foreground">✕</button>
         </div>
 
-        <div class="space-y-2 mb-6">
+        <div class="flex-1 overflow-y-auto p-6 space-y-2 min-h-0">
           <label v-for="card in availableCards" :key="card.id" class="flex items-center gap-2 cursor-pointer hover:bg-muted p-2 rounded">
             <input
               type="checkbox"
@@ -204,7 +204,7 @@
           </label>
         </div>
 
-        <div class="flex gap-2">
+        <div class="flex gap-2 p-6 pt-4 border-t border-border bg-card shrink-0">
           <button
             @click="handleAddCards"
             :disabled="selectedCardsToAdd.length === 0 || addingCards"
