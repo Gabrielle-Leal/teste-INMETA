@@ -1,7 +1,7 @@
 [build]
-  base = "client"
-  command = "cd .. && pnpm install && cd client && vite build"
-  publish = "dist"
+  base = "."
+  command = "pnpm install && pnpm run build:client"
+  publish = "client/dist"
 
 [[redirects]]
   from = "/*"
