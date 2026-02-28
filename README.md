@@ -2,6 +2,8 @@
 
 Um SPA (Single Page Application) moderno para troca de cartas colecionáveis, desenvolvido com Vue 3, TypeScript, Pinia e Tailwind CSS.
 
+🌐 **Deploy**: [https://card-marketplace.netlify.app/](https://card-marketplace.netlify.app/)
+
 ## 🎯 Funcionalidades
 
 ### Autenticação
@@ -12,8 +14,10 @@ Um SPA (Single Page Application) moderno para troca de cartas colecionáveis, de
 
 ### Gerenciamento de Cartas
 - ✅ Visualizar todas as cartas disponíveis no sistema
-- ✅ Adicionar cartas à sua coleção pessoal
-- ✅ Visualizar suas cartas
+- ✅ Adicionar cartas à sua coleção pessoal com modal otimizado
+- ✅ Visualizar suas cartas em grid responsivo
+- ✅ Visualizar detalhes completos da carta ao clicar
+- ✅ Modal de detalhes com imagem ampliada e descrição completa
 - ✅ Paginação de cartas
 
 ### Marketplace de Trocas
@@ -30,6 +34,11 @@ Um SPA (Single Page Application) moderno para troca de cartas colecionáveis, de
 - ✅ Loading spinners
 - ✅ Validação de formulários em tempo real
 - ✅ Tratamento de erros
+- ✅ Modais interativos com scroll otimizado
+- ✅ Modal de adicionar cartas com botões fixos
+- ✅ Modal de detalhes do card clicável
+- ✅ Transições suaves e hover effects
+- ✅ Grid responsivo para exibição de cartas
 
 ## 🏗️ Arquitetura
 
@@ -117,17 +126,29 @@ O servidor estará disponível em `http://localhost:3000`
 ### 3. Adicionar Cartas
 - Acesse o Dashboard
 - Clique em "Adicionar Cartas"
-- Selecione as cartas que você possui
+- Um modal grande será aberto com todas as cartas disponíveis
+- Role a lista de cartas (os botões ficam fixos na parte inferior)
+- Selecione as cartas que você possui marcando os checkboxes
 - Clique em "Adicionar"
+- As cartas serão adicionadas à sua coleção
 
-### 4. Criar Solicitação de Troca
+### 4. Visualizar Detalhes da Carta
+- No Dashboard, em "Minhas Cartas"
+- Clique em qualquer carta da sua coleção
+- Um modal será aberto mostrando:
+  - Imagem da carta em tamanho maior
+  - Nome da carta
+  - Descrição completa
+- Feche o modal clicando no X ou no botão "Fechar"
+
+### 5. Criar Solicitação de Troca
 - Acesse o Dashboard
 - Clique em "Criar Troca"
 - Selecione as cartas que você oferece
 - Selecione as cartas que você procura
 - Clique em "Criar Solicitação"
 
-### 5. Explorar Marketplace
+### 6. Explorar Marketplace
 - Acesse o Marketplace
 - Visualize todas as solicitações de troca abertas
 - Veja quais cartas cada usuário oferece e procura
@@ -183,6 +204,31 @@ O cache é automaticamente invalidado quando dados são atualizados.
 - Toasts para notificações
 - Loading spinners para estados assíncronos
 
+### Modais Interativos
+
+#### Modal de Adicionar Cartas
+- **Tamanho**: Grande (max-w-4xl, altura 85vh)
+- **Estrutura**: 
+  - Cabeçalho fixo com título e botão fechar
+  - Lista de cartas rolável independente
+  - Botões de ação fixos na parte inferior
+- **Funcionalidades**:
+  - Seleção múltipla de cartas via checkboxes
+  - Scroll suave com botões sempre visíveis
+  - Responsivo em todos os dispositivos
+
+#### Modal de Detalhes da Carta
+- **Tamanho**: Médio (max-w-2xl)
+- **Layout**:
+  - Imagem em destaque (h-80, object-contain)
+  - Background neutro para realçar a carta
+  - Nome e descrição completa
+  - Botão de fechar no topo e embaixo
+- **Interação**:
+  - Clique em qualquer carta para abrir
+  - Fechamento via X ou botão "Fechar"
+  - Imagem não recortada, exibida completa
+
 ## 🔐 Segurança
 
 - Tokens JWT armazenados em localStorage
@@ -221,18 +267,31 @@ A aplicação é totalmente responsiva e funciona em:
 
 ## 🚢 Deploy
 
-A aplicação pode ser deployada em qualquer plataforma que suporte Node.js:
+**✅ Aplicação em Produção**: [https://card-marketplace.netlify.app/](https://card-marketplace.netlify.app/)
+
+A aplicação está deployada no Netlify e totalmente funcional.
+
+### Como Fazer Deploy
+
+A aplicação pode ser deployada em qualquer plataforma que suporte aplicações estáticas:
 
 1. Build: `pnpm build`
 2. O diretório `dist/public` contém os arquivos estáticos
-3. O arquivo `dist/index.js` contém o servidor Express
 
 ### Plataformas Recomendadas
+- **Netlify** ⭐ (Em uso)
 - Vercel
-- Netlify
 - Railway
 - Render
-- Heroku
+- Cloudflare Pages
+
+### Deploy no Netlify
+
+1. Conecte o repositório ao Netlify
+2. Configure:
+   - **Build command**: `pnpm build`
+   - **Publish directory**: `dist/public`
+3. Deploy automático a cada push
 
 ## 📝 Commits
 
@@ -283,4 +342,10 @@ Desenvolvido como desafio técnico para avaliar habilidades em:
 ---
 
 **Status**: ✅ Completo e funcional
-**Última atualização**: Fevereiro de 2026
+**Última atualização**: 28 de Fevereiro de 2026
+
+### 🆕 Últimas Melhorias
+- Modal de adicionar cartas otimizado com botões fixos e scroll independente
+- Modal de detalhes da carta com visualização ampliada
+- Interface de usuário aprimorada com transições suaves
+- Grid responsivo para melhor visualização das cartas
