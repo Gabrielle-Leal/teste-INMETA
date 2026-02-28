@@ -62,7 +62,12 @@
             </div>
 
             <div v-else class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div v-for="card in userCards" :key="card.id" class="rounded-lg border border-border bg-card overflow-hidden hover:shadow-lg transition-shadow">
+              <div 
+                v-for="card in userCards" 
+                :key="card.id" 
+                @click="openCardDetails(card)"
+                class="rounded-lg border border-border bg-card overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
+              >
                 <img :src="card.imageUrl" :alt="card.name" class="w-full h-64 object-cover" />
                 <div class="p-4">
                   <h3 class="font-semibold mb-2">{{ card.name }}</h3>
@@ -221,6 +226,31 @@
         </div>
       </div>
     </div>
+
+    <!-- Card Details Modal -->
+    <div v-if="showCardDetailsModal && selectedCard" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+      <div class="bg-card rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+        <div class="relative bg-muted">
+          <button 
+            @click="showCardDetailsModal = false" 
+            class="absolute top-4 right-4 z-10 bg-black/50 hover:bg-black/70 text-white rounded-full w-8 h-8 flex items-center justify-center transition-colors"
+          >
+            ✕
+          </button>
+          <img :src="selectedCard.imageUrl" :alt="selectedCard.name" class="w-full h-80 object-contain rounded-t-lg" />
+        </div>
+        <div class="p-6">
+          <h2 class="text-2xl font-bold mb-4">{{ selectedCard.name }}</h2>
+          <p class="text-muted-foreground mb-6">{{ selectedCard.description }}</p>
+          <button 
+            @click="showCardDetailsModal = false"
+            class="w-full rounded-lg border border-border px-4 py-2 font-semibold transition-all hover:bg-muted"
+          >
+            Fechar
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -239,6 +269,8 @@ const { success: showSuccess, error: showError } = useToast()
 
 const activeTab = ref<'cards' | 'trades' | 'create-trade'>('cards')
 const showAddCardsModal = ref(false)
+const showCardDetailsModal = ref(false)
+const selectedCard = ref<any>(null)
 const selectedCardsToAdd = ref<string[]>([])
 const addingCards = ref(false)
 const creatingTrade = ref(false)
@@ -336,6 +368,11 @@ const deleteTrade = async (tradeId: string) => {
   } catch (error) {
     showError('Erro ao deletar solicitacao')
   }
+}
+
+const openCardDetails = (card: any) => {
+  selectedCard.value = card
+  showCardDetailsModal.value = true
 }
 
 onMounted(() => {
